@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>  
+<html>
+<link href="page2.php">
+<link href="page3.php">
+<head>
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+<body>  
+
+<?php
+    // define variables and set to empty values
+    $valueErr  = "";
+    $value =  $sol= "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["value"])) {
+        $valueErr = "value is required";
+    } else {
+        $value = test_input($_POST["value"]);
+    }
+    
+    
+    }
+    if($_SERVER($_POST("select")))
+    {
+        $sol=$_POST("select");
+        $value=$sol*12;
+    }
+
+
+    function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    }
+   
+?>
+
+<h4>Page 1 [Home]</h4>
+<p><span class="error">* required field</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<h4>Converter</h4>
+    <select name="select" placeholder="select">
+      <option value="">convert to</option>
+      <option value="feettoinch">feet to inch</option>
+      <option value="inchtofeet">inch to feet</option>
+      
+    </select>  <br><br>
+  Value: <input type="text" name="value">
+  <span class="error">* <?php echo $valueErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+value: echo $value;
+echo "<br>";
+
+?>
+
+</body>
+</html>
